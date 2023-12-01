@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('home');
+
+// Menampilkan formulir laporan
+Route::get('/laporan-form', [LaporanController::class, 'showForm'])->name('laporan.form');
+
+// Menangani submit formulir laporan
+Route::post('/laporan-submit', [LaporanController::class, 'submitForm'])->name('laporan.submit');
+

@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Sistem Informasi Polres Pematang Siantar</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('asset') }}/assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ asset('asset') }}/img/bg.jpeg">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="{{ asset('asset') }}/dist/css/styles.css">
 </head>

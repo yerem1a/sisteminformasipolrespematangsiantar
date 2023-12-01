@@ -16,7 +16,7 @@ class CreateLaporanDataTable extends Migration
         Schema::create('laporan_data', function (Blueprint $table) {
             $table->id();
             $table->string('option');
-            $table->string('image_path');
+            $table->string('image_path')->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();
         });

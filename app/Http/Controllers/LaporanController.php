@@ -16,13 +16,13 @@ class LaporanController extends Controller
     {
         // Validasi data formulir
         $request->validate([
-            'laporanOption' => 'required',
-            'imageInput' => 'nullable|image|mimes:jpeg,png|max:2048', // Optional: Batasan jenis dan ukuran gambar
+            'serviceOption' => 'required',
+            'imageInput' => 'nullable|image|mimes:jpeg,png|max:2048',
             'comments' => 'nullable',
         ]);
 
         // Simpan data ke database
-        $laporanOption = $request->input('laporanOption');
+        $laporanOption = $request->input('serviceOption');
         $imagePath = null;
 
         // Jika gambar diunggah, simpan dan dapatkan path-nya
@@ -30,13 +30,13 @@ class LaporanController extends Controller
             $imagePath = $request->file('imageInput')->store('images');
         }
 
-        LaporanData::create([
+        $laporan = LaporanData::create([
             'option' => $laporanOption,
             'image_path' => $imagePath,
             'comments' => $request->input('comments'),
         ]);
 
-        return redirect()->route('laporan.form')->with('success', 'Formulir berhasil disubmit!');
+        // Tampilkan informasi bahwa laporan sudah dibuat
+        return redirect()->back()->with('success', 'Laporan sudah dibuat');
     }
-
 }
