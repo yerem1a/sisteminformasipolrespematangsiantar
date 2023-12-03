@@ -9,5 +9,5 @@ class LaporanData extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['option', 'image_patah','comments',];
+    protected $fillable = ['option', 'image_path', 'comments',];
 }

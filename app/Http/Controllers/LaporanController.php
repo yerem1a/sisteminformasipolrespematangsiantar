@@ -23,20 +23,31 @@ class LaporanController extends Controller
 
         // Simpan data ke database
         $laporanOption = $request->input('serviceOption');
-        $imagePath = null;
+        $fileBaru = null;
 
         // Jika gambar diunggah, simpan dan dapatkan path-nya
         if ($request->hasFile('imageInput')) {
-            $imagePath = $request->file('imageInput')->store('images');
+            $file = $request->file('imageInput');
+            $uploadPath = public_path('image');
+            $fileBaru = date('Ymd', strtotime($request->input('date'))) . "T" . date('His') .  "." . $file->extension();
+            $file->move($uploadPath, $fileBaru);
         }
 
-        $laporan = LaporanData::create([
+        LaporanData::create([
             'option' => $laporanOption,
-            'image_path' => $imagePath,
+            'image_path' => $fileBaru,
             'comments' => $request->input('comments'),
         ]);
 
-        // Tampilkan informasi bahwa laporan sudah dibuat
-        return redirect()->back()->with('success', 'Laporan sudah dibuat');
+        return redirect('/');
+    }
+
+    public function showDashboard()
+    {
+        // Ambil data laporan dari database
+        $laporanData = LaporanData::all();
+
+        // Kirim data laporan ke view 'admin.dashboard'
+        return view('admin.dashboard', compact('laporanData'));
     }
 }
