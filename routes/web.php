@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaporanController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,11 @@ Route::get('/laporan-form', [LaporanController::class, 'showForm'])->name('lapor
 // Menangani submit formulir laporan
 Route::post('/laporan-submit', [LaporanController::class, 'submitForm'])->name('laporan.submit');
 
+// Rute untuk login dan logout
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.auth.login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
