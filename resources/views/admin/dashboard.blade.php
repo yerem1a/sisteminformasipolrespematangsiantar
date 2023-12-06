@@ -33,6 +33,8 @@
                             <th>Gambar</th>
                             <th>Keterangan</th>
                             <th>Tanggal</th>
+                            <th>Laporkan</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -55,9 +57,14 @@
                             </td>
                             <td>
                                 <img src="{{ asset('image').'/'.$laporan->image_path }}" style="width: 300px; height:300px">
-                                </td>
+                            </td>
                             <td>{{ $laporan->comments }}</td>
                             <td>{{ $laporan->created_at }}</td>
+                            <td>
+                                <div class="container mt-5">
+                                    <a href="https://wa.me/6282362055748?text=Halo%20Ini%20Pesan%20Anda" class="btn btn-primary">Kirim Pesan WhatsApp</a>
+                                  </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
