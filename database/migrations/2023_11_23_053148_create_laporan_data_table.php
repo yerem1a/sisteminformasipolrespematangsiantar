@@ -18,7 +18,10 @@ class CreateLaporanDataTable extends Migration
             $table->string('option');
             $table->string('image_path')->nullable();
             $table->text('comments')->nullable();
+            $table->boolean('isCheck')->default(false);
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

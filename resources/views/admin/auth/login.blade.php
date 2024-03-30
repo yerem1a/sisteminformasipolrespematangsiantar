@@ -2,25 +2,27 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Login</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    
+
     <!-- Your custom styles -->
     <style>
         /* Add your custom CSS styles here */
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Admin Login</div>
+                    <div class="card-header">Login</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('admin.auth.login') }}">
@@ -28,7 +30,8 @@
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email"
+                                    value="{{ old('email') }}" required autofocus>
                             </div>
 
                             <div class="mb-3">
@@ -41,9 +44,14 @@
                                 <label class="form-check-label" for="remember">Remember Me</label>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-primary">Login</button>
+
+                                <a href="{{ route('user.register') }}">Register here</a>
+                            </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -59,4 +67,5 @@
         // Add your custom JavaScript here
     </script>
 </body>
+
 </html>

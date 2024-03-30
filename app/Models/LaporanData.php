@@ -9,5 +9,11 @@ class LaporanData extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['option', 'image_path', 'comments',];
+    protected $fillable = ['option', 'image_path', 'comments', 'user_id']; // Tambahkan 'id_user' ke fillable
+
+    protected $table = 'laporan_data';
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

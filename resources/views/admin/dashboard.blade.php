@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row ">
+            <div class="row">
                 <div class="col-sm-6">
                     <h1 class="m-0">Laporan Masyarakat</h1>
                 </div>
@@ -34,6 +34,8 @@
                                         <th>Keterangan</th>
                                         <th>Tanggal</th>
                                         <th>Laporkan</th>
+                                        <th>Status Laporan</th> <!-- New column for status of the report -->
+                                        <th>Nama Pengguna</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +63,6 @@
                                                 </button>
 
                                                 <!-- Image Modal -->
-                                                <!-- Image Modal -->
                                                 <div class="modal fade" id="imageModal{{ $laporan->id }}"
                                                     tabindex="-1" aria-labelledby="exampleModalLabel"
                                                     aria-hidden="true">
@@ -69,13 +70,13 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
-                                                                    id="imageModal{{ $laporan->id }}">Gambar Laporan
+                                                                    id="imageModal{{ $laporan->id }}">Gambar
+                                                                    Laporan
                                                                 </h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
-
                                                             </div>
                                                             <div class="modal-body">
                                                                 <img src="{{ asset('image') . '/' . $laporan->image_path }}"
@@ -84,7 +85,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </td>
                                             <td>{{ $laporan->comments }}</td>
                                             <td>{{ $laporan->created_at }}</td>
@@ -100,10 +100,28 @@
                                                         ];
                                                         $whatsappNumber = $whatsappNumbers[$laporan->option] ?? ''; // Default to empty string if option not found
                                                     @endphp
+                                                    <form action="/admin/status-laporan" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $laporan->id }}" />
+                                                        <button type="submit" class="btn btn-primary">Ada Laporan
+                                                            Baru!</button>
+                                                    </form>
 
-                                                    <a href="https://wa.me/{{ $whatsappNumber }}?text=Ada%20laporan%20baru%20di%20sistem%20admin"
-                                                        class="btn btn-primary">Ada Laporan Baru!</a>
                                                 </div>
+                                            </td>
+
+                                            <td>
+                                                @if ($laporan->isCheck == 0)
+                                                    Belum Dilaporkan
+                                                @elseif ($laporan->isCheck == 1)
+                                                    Sudah Dilaporkan
+                                                @endif
+
+                                            </td>
+                                            <td>
+                                                <!-- Display user's name -->
+                                                {{ $laporan->user->name }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -114,12 +132,10 @@
                 </div>
             </div>
             <!-- End of Example -->
-
         </div>
     </section>
     <!-- /.content -->
 </div>
-
 
 @include('admin.layouts.js')
 <!-- Bootstrap CSS -->

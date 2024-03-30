@@ -20,4 +20,9 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->role === 'admin';
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
