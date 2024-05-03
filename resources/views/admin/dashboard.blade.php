@@ -104,8 +104,8 @@
                                                         @csrf
                                                         <input type="hidden" name="id"
                                                             value="{{ $laporan->id }}" />
-                                                        <button type="submit" class="btn btn-primary">Ada Laporan
-                                                            Baru!</button>
+                                                        <button type="submit" class="btn btn-primary">Proses
+                                                            Laporan!</button>
                                                     </form>
 
                                                 </div>

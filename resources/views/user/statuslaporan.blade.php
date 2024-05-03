@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Pengaduan Laporan</h1>
+                    <h1 class="m-0">Status Laporan</h1>
                 </div>
             </div>
         </div>

@@ -28,9 +28,10 @@
                     menciptakan lingkungan yang lebih aman dan terpercaya.</p>
 
                 <!-- Button to Show Modal -->
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#serviceModal">
-                    Laporan
-                </button>
+                <a href="{{ route('user.register') }}" class="btn btn-primary">
+                    Registrasi Disini
+                </a>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel"
@@ -70,8 +71,7 @@
                                     <!-- Text Area for Comments -->
                                     <div class="mb-3">
                                         <label for="comments" class="form-label">Keterangan Laporan:</label>
-                                        <textarea class="form-control" id="comments" name="comments"
-                                            rows="3"></textarea>
+                                        <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
                                     </div>
 
                                     <!-- Submit Button -->
@@ -112,7 +112,7 @@
     </div>
 </section>
 <script>
-    @if(session('success'))
+    @if (session('success'))
         alert("{{ session('success') }}");
         window.location.reload();
     @endif
